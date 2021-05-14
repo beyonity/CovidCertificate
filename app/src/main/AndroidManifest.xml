@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CovidCertificate">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activites.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,6 +19,12 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+            <meta-data
+                android:name="com.google.android.gms.ads.APPLICATION_ID"
+                android:value="ca-app-pub-8669188519734324~8350578133"/>
+
+
     </application>
 
 </manifest>

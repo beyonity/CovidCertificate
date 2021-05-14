@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/Milk_White">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:background="@color/Milk_White">
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -21,7 +20,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/capriola"
                 android:gravity="center"
-                android:text="Covid Certificate"
+                android:text="@string/app_name"
                 android:textColor="@color/Black"
                 android:textStyle="bold" />
 

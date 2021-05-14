@@ -1,4 +1,4 @@
-package com.bogarsoft.covidcertificate;
+package com.bogarsoft.covidcertificate.fragments;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bogarsoft.covidcertificate.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link About#newInstance} factory method to
+ * Use the {@link AboutFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class About extends Fragment {
+public class AboutFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class About extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public About() {
+    public AboutFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +39,8 @@ public class About extends Fragment {
      * @return A new instance of fragment About.
      */
     // TODO: Rename and change types and number of parameters
-    public static About newInstance(String param1, String param2) {
-        About fragment = new About();
+    public static AboutFragment newInstance(String param1, String param2) {
+        AboutFragment fragment = new AboutFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

@@ -9,7 +9,7 @@
     android:elevation="20dp"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".About">
+    tools:context=".fragments.AboutFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="200dp"

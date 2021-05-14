@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Milk_White"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragments.HomeFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/Brown_Bear"
+        app:endIconTint="@color/black"
+        android:textColorHint="@color/Brown_Bear"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:hint="Select Country">
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Brown_Bear"
+            android:inputType="none"
+            android:focusable="false"
+            android:id="@+id/countries"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:cardBackgroundColor="@color/Cornsilk"
+        app:cardCornerRadius="10dp"
+        app:contentPadding="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/capriola"
+                    android:text="Active Covid Cases"
+                    android:textAlignment="center"
+                    android:textColor="@color/Black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/totalcases"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/capriola"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textColor="@color/Cherry_Red"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:text="Recovered"
+                            android:textAlignment="center"
+                            android:textColor="@color/Green_Apple"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/totalrecoveried"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:text="0"
+                            android:textAlignment="center"
+                            android:textColor="@color/Aztec_Purple"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:text="Deaths"
+                            android:textAlignment="center"
+                            android:textColor="@color/Black"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/totaldeaths"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:text="0"
+                            android:textAlignment="center"
+                            android:textColor="@color/Cloudy_Gray"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+            <com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="16dp"
+                android:visibility="gone"
+                android:id="@+id/covidcasesprogess"
+                app:trailingcircular_animDelay="50"
+                app:trailingcircular_animDuration="1200"
+                app:trailingcircular_bigCircleRadius="20dp"
+                app:trailingcircular_dotsColor="@color/Red"
+                app:trailingcircular_dotsRadius="6dp"
+                app:trailingcircular_noOfTrailingDots="3" />
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_margin="20dp"
+            app:cardBackgroundColor="@color/Green_Thumb"
+            app:cardCornerRadius="15dp">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/capriola"
+                android:gravity="center"
+                android:text="Download Vaccine Certificate"
+                android:textAlignment="center"
+                android:textColor="@color/Black"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_margin="20dp"
+            app:cardBackgroundColor="@color/Lilac"
+            app:cardCornerRadius="15dp">
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/capriola"
+                android:gravity="center"
+                android:text="Detailed Statistics of Covid Casses"
+                android:textAlignment="center"
+                android:textColor="@color/Black"
+                android:textStyle="bold" />
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</LinearLayout>
