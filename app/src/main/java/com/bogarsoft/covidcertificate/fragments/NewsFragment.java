@@ -20,6 +20,7 @@ import com.bogarsoft.covidcertificate.adapters.NewsAdapter;
 import com.bogarsoft.covidcertificate.models.News;
 import com.bogarsoft.covidcertificate.utils.Constants;
 
+import org.joda.time.DateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -122,6 +123,11 @@ public class NewsFragment extends Fragment {
                             }
 
                             newsAdapter.notifyDataSetChanged();
+
+                            if (newsList.size()>0){
+                                DateTime dateTime = new DateTime(newsList.get(0).getDate());
+                                Log.d(TAG, "onResponse: "+dateTime.getMillis());
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

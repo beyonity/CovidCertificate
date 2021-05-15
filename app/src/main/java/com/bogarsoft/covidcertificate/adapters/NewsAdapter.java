@@ -3,6 +3,7 @@ package com.bogarsoft.covidcertificate.adapters;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +20,18 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
 
 import org.jetbrains.annotations.NotNull;
+import org.joda.time.DateTime;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     List<News> newsList;
     Activity activity;
 
+    private static final String TAG = "NewsAdapter";
     public NewsAdapter(List<News> newsList, Activity activity) {
         this.newsList = newsList;
         this.activity = activity;
@@ -45,7 +51,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         News news = newsList.get(position);
         holder.source.setText(news.getSource());
         holder.title.setText(news.getTitle());
-        holder.date.setText(news.getDate());
+
+
+        SimpleDateFormat SDF = new SimpleDateFormat("dd MMM YYYY HH:mm a");
+        //SDF.setTimeZone(TimeZone.getTimeZone("IST"));
+        DateTime dateTime = new DateTime(news.getDate());
+        Date date = new Date();
+        date.setTime(dateTime.getMillis());
+       // Log.d(TAG, "onBindViewHolder: "+date.getTime());
+        String text = SDF.format(date);
+
+
+        holder.date.setText(text);
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
