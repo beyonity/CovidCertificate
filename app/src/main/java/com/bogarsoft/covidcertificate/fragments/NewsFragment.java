@@ -56,12 +56,14 @@ public class NewsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    int totalads;
     Button refreshbutton;
     NativeAd nativeAd;
     SwipeRefreshLayout swipeRefreshLayout;
     List<NativeAd> ad = new ArrayList<>();
     int index = 5;
+
+    private AdLoader adLoader;
     private static final String TAG = "NewsFragment";
     RecyclerView rv;
     NewsAdapter newsAdapter;
@@ -120,7 +122,9 @@ public class NewsFragment extends Fragment {
 
 
 
-        refreshAd(view);
+       // refreshAd(view);
+
+        getData();
 
         return view;
     }
@@ -266,6 +270,13 @@ public class NewsFragment extends Fragment {
                                 DateTime dateTime = new DateTime(((News)newsList.get(0)).getDate());
                                 Log.d(TAG, "onResponse: "+dateTime.getMillis());
                             }
+
+                            if (newsList.size() > 5) {
+
+                                    loadNativeAds(newsList.size());
+
+
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -279,11 +290,7 @@ public class NewsFragment extends Fragment {
                 });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getData();
-    }
+
 
     @Override
     public void onDestroy() {
@@ -296,14 +303,15 @@ public class NewsFragment extends Fragment {
 
 
     private void insertAdsInMenuItems(List<NativeAd> adlist) {
+        Log.d(TAG, "insertAdsInMenuItems: "+adlist.size());
         if (adlist.size() <= 0) {
             return;
         }
+
         int offset = 6;
 
-
         for (NativeAd ad : adlist) {
-            Log.d(TAG, "insertAdsInMenuItems: " + index);
+            //Log.d(TAG, "insertAdsInMenuItems: " + index);
             if (index < newsList.size()) {
                 newsList.add(index, ad);
                 index = index + offset;
@@ -313,5 +321,78 @@ public class NewsFragment extends Fragment {
         newsAdapter.notifyDataSetChanged();
 
     }
+
+    private void loadNativeAds(int size) {
+
+
+        index = 5;
+
+        totalads = size / 6;
+        int perads = totalads / 5;
+        int remainder = totalads % 5;
+        Log.d(TAG, "loadNativeAds: " + totalads);
+        Log.d(TAG, "loadNativeAds: " + perads);
+        Log.d(TAG, "loadNativeAds: " + remainder);
+        int offset = 6;
+        for (int a = 0; a < totalads + 1; a++) {
+            ;
+            Log.d(TAG, "loadNativeAds: inside loader");
+            ad.clear();
+            AdLoader.Builder builder = new AdLoader.Builder(getContext(), "ca-app-pub-8669188519734324/5234294355");
+            int NO_OF_ADS = 5;
+            if (a == perads) {
+                NO_OF_ADS = remainder;
+            }
+
+            builder.forNativeAd(new NativeAd.OnNativeAdLoadedListener() {
+                @Override
+                public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+
+                        //insertAdsInMenuItems(ad);
+                        newsList.add(index, nativeAd);
+                        index = index + offset;
+
+                }
+            }).build();
+
+            AdLoader adLoader = builder.withAdListener(new AdListener() {
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                }
+
+                @Override
+                public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                    Toast.makeText(getContext(), loadAdError.toString(), Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "onAdFailedToLoad: "+loadAdError.getResponseInfo());
+                    super.onAdFailedToLoad(loadAdError);
+                }
+
+                @Override
+                public void onAdOpened() {
+                    super.onAdOpened();
+                }
+
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                }
+
+                @Override
+                public void onAdClicked() {
+                    super.onAdClicked();
+                }
+            }).build();
+            adLoader.loadAd(new AdRequest.Builder().build());
+        }
+
+
+
+
+    }
+
+
+
+
 
 }

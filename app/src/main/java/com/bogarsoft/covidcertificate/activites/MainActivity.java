@@ -26,6 +26,7 @@ import com.bogarsoft.covidcertificate.models.District;
 import com.bogarsoft.covidcertificate.models.State;
 import com.bogarsoft.covidcertificate.utils.Constants;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -34,7 +35,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class MainActivity extends AppCompatActivity {
@@ -61,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
+
+        List<String> testDeviceIds = Arrays.asList("7D6FA30B926B8CC2F3CC9434DDB21731");
+        RequestConfiguration configuration =
+                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
+        MobileAds.setRequestConfiguration(configuration);
 
         bottomNavigationView = findViewById(R.id.bottomnav);
         viewPager = findViewById(R.id.vg);
