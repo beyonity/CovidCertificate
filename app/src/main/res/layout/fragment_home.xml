@@ -310,7 +310,7 @@
                         android:gravity="center"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="Check Vaccination Slots in Hostipal"
+                        android:text="Vaccination Tracker in your district"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
                         android:textStyle="bold" />
