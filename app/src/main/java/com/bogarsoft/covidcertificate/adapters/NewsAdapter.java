@@ -56,7 +56,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             }
         });
 
-        Glide.with(activity).load(news.getImage()).into(holder.cover);
+        Glide.with(activity).load(news.getImage()).error(R.drawable.cover).into(holder.cover);
 
 
     }
