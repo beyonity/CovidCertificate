@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_above="@+id/bottomnav"
-    android:background="@color/Milk_White"
+    android:background="@color/AntiqueWhite"
     android:orientation="vertical"
     tools:context=".activites.MainActivity">
 
@@ -31,6 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:menu="@menu/main_menu"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:itemIconTint="@color/bottom_nav_color"
         android:id="@+id/bottomnav"
         android:layout_alignParentBottom="true"/>
 

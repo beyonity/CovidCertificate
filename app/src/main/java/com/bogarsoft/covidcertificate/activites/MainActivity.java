@@ -22,6 +22,8 @@ import com.bogarsoft.covidcertificate.fragments.AboutFragment;
 import com.bogarsoft.covidcertificate.fragments.HomeFragment;
 import com.bogarsoft.covidcertificate.fragments.NewsFragment;
 import com.bogarsoft.covidcertificate.models.Country;
+import com.bogarsoft.covidcertificate.models.District;
+import com.bogarsoft.covidcertificate.models.State;
 import com.bogarsoft.covidcertificate.utils.Constants;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
@@ -31,6 +33,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Iterator;
+import java.util.function.Consumer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -110,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -133,17 +139,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        homeFragment.setOnChangeCountryChange(new HomeFragment.OnChangeCountryChange() {
-            @Override
-            public void OnChange(Country country) {
-                selectedCountry = country.getIso3();
-            }
-        });
+
+        viewPager.setOffscreenPageLimit(3);
 
 
-        getCountries();
+        //getCountries();
+
     }
-
+/*
 
     private void getCountries(){
         AndroidNetworking.get(Constants.GET_ALL_COUNTRIES)
@@ -202,14 +205,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
+*/
 
 
     Runnable refreshCovidData = new Runnable() {
         @Override
         public void run() {
-            getCovidCountryData(selectedCountry);
-            handler.postDelayed(refreshCovidData,60000);
+            //getCovidCountryData(selectedCountry);
+            //handler.postDelayed(refreshCovidData,60000);
         }
     };
+
+
+
 }
