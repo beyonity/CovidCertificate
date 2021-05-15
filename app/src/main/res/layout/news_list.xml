@@ -15,13 +15,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="160dp">
+            android:layout_height="180dp">
 
             <ImageView
                 android:id="@+id/coverimage"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:alpha=".8"
+                android:alpha=".7"
                 android:scaleType="centerCrop"
                 android:src="@drawable/cover" />
 
@@ -44,7 +44,17 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="The Indian Express"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="-"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -55,7 +65,7 @@
                         android:fontFamily="@font/roboto_bold"
                         android:text="5 hours ago"
                         android:textColor="@color/white"
-                        android:textSize="15sp"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
 
 
@@ -69,7 +79,7 @@
                     android:fontFamily="@font/roboto_medium"
                     android:text="New York [US], May 14 (ANI): A research presented at the ATS 2021 International Conference…"
                     android:textColor="@color/white"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     android:textStyle="bold" />
 
             </LinearLayout>

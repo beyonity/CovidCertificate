@@ -14,6 +14,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
       <item name="android:windowLightStatusBar">true</item>
+        <!--<item name="android:statusBarColor">@color/Gray_Cloud</item>-->
         <!-- Customize your theme here. -->
         <item name="android:forceDarkAllowed">false</item>
     </style>

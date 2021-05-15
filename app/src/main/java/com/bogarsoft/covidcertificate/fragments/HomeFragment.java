@@ -1,5 +1,6 @@
 package com.bogarsoft.covidcertificate.fragments;
 
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -13,19 +14,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.agrawalsuneet.dotsloader.loaders.TrailingCircularDotsLoader;
+
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bogarsoft.covidcertificate.R;
+import com.bogarsoft.covidcertificate.activites.VaccineACtivity;
 import com.bogarsoft.covidcertificate.models.District;
 import com.bogarsoft.covidcertificate.models.State;
 import com.bogarsoft.covidcertificate.utils.Constants;
 import com.bogarsoft.covidcertificate.utils.StorageUtility;
-import com.google.android.gms.location.FusedLocationProviderClient;
+
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
 import org.json.JSONException;
@@ -49,9 +53,10 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = "HomeFragment";
 
+    MaterialCardView materialCardView;
     SwipeRefreshLayout swipeRefreshLayout;
-    MaterialAutoCompleteTextView states;
-    MaterialAutoCompleteTextView districts;
+    Spinner states;
+    Spinner districts;
     List<District> districtList = new ArrayList<>();
     ArrayAdapter<State> stateArrayAdapter;
     ArrayAdapter<District> districtArrayAdapter;
@@ -62,13 +67,13 @@ public class HomeFragment extends Fragment {
     private String mParam2;
     public Criteria criteria;
     public String bestProvider;
-    TrailingCircularDotsLoader progressbar;
+
 
     StorageUtility storageUtility;
     LocationManager locationManager;
     public double latitude;
     public double longitude;
-    private FusedLocationProviderClient fusedLocationClient;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -111,17 +116,29 @@ public class HomeFragment extends Fragment {
         totalcases = view.findViewById(R.id.totalcases);
         totaldeaths = view.findViewById(R.id.totaldeaths);
         totalrecoveries = view.findViewById(R.id.totalrecoveried);
-        progressbar = view.findViewById(R.id.covidcasesprogess);
         states = view.findViewById(R.id.states);
         districts = view.findViewById(R.id.district);
 
-
-
-
-
-        states.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* materialCardView = view.findViewById(R.id.vaccineslot);
+        materialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), VaccineACtivity.class);
+                startActivity(intent);
+            }
+        });*/
+        stateArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Constants.stateList);
+        stateArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        states.setAdapter(stateArrayAdapter);
+
+        districtArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,districtList);
+        districtArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        districts.setAdapter(districtArrayAdapter);
+
+
+        states.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 State state = Constants.stateList.get(position);
                 storageUtility.setState(state.getName());
                 selectedstate = state;
@@ -134,30 +151,54 @@ public class HomeFragment extends Fragment {
                 districtList.clear();
                 districtList.addAll(state.getDistrictList());
                 districtArrayAdapter.notifyDataSetChanged();
-                districts.setSelection(0);
-            }
-        });
-
-        districts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                District dis = districtList.get(position);
-                storageUtility.setDistrict(dis.getName());
-                if (!dis.getName().equals("All")){
-                    totalcases.setText(dis.getActive());
-                    totaldeaths.setText(dis.getDeath());
-                    totalrecoveries.setText(dis.getRecovered());
-                }else {
-                    if (selectedstate!=null){
-                        totalcases.setText(selectedstate.getActive());
-                        totaldeaths.setText(selectedstate.getDeath());
-                        totalrecoveries.setText(selectedstate.getRecovered());
+                boolean exist = false;
+                for (District district : districtList){
+                    if (district.getName().equals(storageUtility.getDistrict())){
+                        districts.setSelection(districtList.indexOf(district));
+                        exist = true;
+                        break;
                     }
                 }
 
+                if (!exist){
+                    districts.setSelection(0);
+                    //getIndianData();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
+
+      districts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+          @Override
+          public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+              District dis = districtList.get(position);
+              storageUtility.setDistrict(dis.getName());
+              if (!dis.getName().equals("All")){
+                  totalcases.setText(dis.getActive());
+                  totaldeaths.setText(dis.getDeath());
+                  totalrecoveries.setText(dis.getRecovered());
+              }else {
+                  if (selectedstate!=null){
+                      totalcases.setText(selectedstate.getActive());
+                      totaldeaths.setText(selectedstate.getDeath());
+                      totalrecoveries.setText(selectedstate.getRecovered());
+                  }
+              }
+
+          }
+
+          @Override
+          public void onNothingSelected(AdapterView<?> parent) {
+
+          }
+      });
+
+
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -183,16 +224,9 @@ public class HomeFragment extends Fragment {
 
         districtList.clear();
         Constants.stateList.clear();
-        states.setText(storageUtility.getState());
-        districts.setText(storageUtility.getDistrict());
 
-        stateArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, Constants.stateList);
-        stateArrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        states.setAdapter(stateArrayAdapter);
 
-        districtArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line,districtList);
-        districtArrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-        districts.setAdapter(districtArrayAdapter);
+
         AndroidNetworking.get(Constants.GET_INDIAN_STATS)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -262,10 +296,10 @@ public class HomeFragment extends Fragment {
                         if (!storageUtility.getState().equals("None")){
                             for (State state : Constants.stateList){
                                 if (state.getName().equals(storageUtility.getState())){
-
+                                    states.setSelection(Constants.stateList.indexOf(state));
                                     if (!storageUtility.getDistrict().equals("None")){
                                         if (storageUtility.getDistrict().equals("All")){
-
+                                            districts.setSelection(0);
                                             totalcases.setText(state.getActive());
                                             totaldeaths.setText(state.getDeath());
                                             totalrecoveries.setText(state.getRecovered());
@@ -273,7 +307,7 @@ public class HomeFragment extends Fragment {
                                         }else {
                                             for (District district : state.getDistrictList()){
                                                 if (district.getName().equals(storageUtility.getDistrict())){
-
+                                                    districts.setSelection(districtList.indexOf(state));
                                                     totalcases.setText(district.getActive());
                                                     totaldeaths.setText(district.getDeath());
                                                     totalrecoveries.setText(district.getRecovered());
