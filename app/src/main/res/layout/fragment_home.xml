@@ -2,15 +2,14 @@
 
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swiperefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 <androidx.core.widget.NestedScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -202,9 +201,10 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:paddingTop="25dp"
-                app:contentPadding="8dp"
                 app:cardBackgroundColor="@color/Milk_White"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:contentPadding="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -241,9 +241,10 @@
                 android:layout_weight="1"
                 android:paddingTop="25dp"
 
-                app:contentPadding="8dp"
                 app:cardBackgroundColor="@color/Milk_White"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:contentPadding="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -286,9 +287,10 @@
                 android:layout_weight="1"
                 android:paddingTop="25dp"
 
-                app:contentPadding="8dp"
                 app:cardBackgroundColor="@color/Milk_White"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:contentPadding="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -308,7 +310,7 @@
                         android:gravity="center"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="Get Vaccination Appointment"
+                        android:text="Check Vaccination Slots in Hostipal"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
                         android:textStyle="bold" />
@@ -322,10 +324,11 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
 
-                app:contentPadding="8dp"
                 android:paddingTop="25dp"
                 app:cardBackgroundColor="@color/Milk_White"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="15dp"
+                app:cardElevation="5dp"
+                app:contentPadding="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -344,11 +347,11 @@
                         android:fontFamily="@font/capriola"
                         android:gravity="center"
                         android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
                         android:text="Call Covid - 19 India Helpline"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
-                        android:textStyle="bold"
-                        android:paddingRight="5dp" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 

@@ -4,10 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
     android:background="@color/Milk_White"
     android:elevation="20dp"
-    android:gravity="center"
     android:orientation="vertical"
     tools:context=".fragments.AboutFragment">
 

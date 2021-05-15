@@ -12,22 +12,26 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         android:orientation="vertical">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp">
+            android:layout_height="160dp">
+
             <ImageView
+                android:id="@+id/coverimage"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:src="@drawable/cover"
+                android:layout_height="160dp"
                 android:alpha=".8"
                 android:scaleType="centerCrop"
-                android:id="@+id/coverimage"/>
+                android:src="@drawable/cover" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:orientation="vertical"
-                android:padding="5dp"
-                android:layout_alignParentBottom="true">
+                android:padding="5dp">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -47,20 +51,21 @@
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
                         android:fontFamily="@font/roboto_bold"
                         android:text="5 hours ago"
-                        android:layout_marginLeft="12dp"
                         android:textColor="@color/white"
                         android:textSize="15sp"
                         android:textStyle="bold" />
 
 
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="8dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:text="New York [US], May 14 (ANI): A research presented at the ATS 2021 International Conference…"
                     android:textColor="@color/white"
@@ -70,33 +75,37 @@
             </LinearLayout>
 
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/AntiqueWhite"
+            android:background="@color/Coral_Blue"
             android:padding="10dp">
+
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/newsicon"
-                android:src="@drawable/ic_newspaper_news_svgrepo_com"
-                android:layout_centerVertical="true"/>
-            <TextView
-                android:layout_toRightOf="@id/newsicon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_medium"
                 android:layout_centerVertical="true"
-                android:text="Full coverage of this story"
+                android:src="@drawable/ic_newspaper_news_svgrepo_com" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@id/newsicon"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Full coverage of this story"
                 android:textColor="@color/design_default_color_on_secondary"
                 android:textSize="15sp" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/ic_baseline_chevron_right_24"
-                android:layout_centerVertical="true"/>
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_baseline_chevron_right_24" />
 
 
         </RelativeLayout>
