@@ -147,6 +147,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/rv"
+        android:layout_above="@id/ad_view_container"
         android:layout_below="@+id/selectiondate"/>
     <TextView
         android:layout_width="wrap_content"
@@ -157,4 +158,11 @@
         android:fontFamily="@font/roboto_bold"
         android:textColor="@color/Gray_Cloud"
         android:layout_centerInParent="true"/>
+    <FrameLayout
+        android:id="@+id/ad_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true" />
+
 </RelativeLayout>

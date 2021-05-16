@@ -8,12 +8,15 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,12 +28,16 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bogarsoft.covidcertificate.R;
 import com.bogarsoft.covidcertificate.activites.BedActivity;
 import com.bogarsoft.covidcertificate.activites.DownloadVaccineCertificateActivity;
+import com.bogarsoft.covidcertificate.activites.HelplineActivity;
 import com.bogarsoft.covidcertificate.activites.VaccineActivity;
 import com.bogarsoft.covidcertificate.models.District;
 import com.bogarsoft.covidcertificate.models.State;
 import com.bogarsoft.covidcertificate.utils.Constants;
 import com.bogarsoft.covidcertificate.utils.StorageUtility;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.card.MaterialCardView;
 
 import org.json.JSONException;
@@ -54,7 +61,7 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = "HomeFragment";
 
-    MaterialCardView materialCardView,bedcard,downloadcert;
+    MaterialCardView materialCardView,bedcard,downloadcert,helpline;
     SwipeRefreshLayout swipeRefreshLayout;
     Spinner states;
     Spinner districts;
@@ -68,13 +75,13 @@ public class HomeFragment extends Fragment {
     private String mParam2;
     public Criteria criteria;
     public String bestProvider;
-
+    private FrameLayout adContainerView;
 
     StorageUtility storageUtility;
     LocationManager locationManager;
     public double latitude;
     public double longitude;
-
+    private AdView adView;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -123,6 +130,15 @@ public class HomeFragment extends Fragment {
        materialCardView = view.findViewById(R.id.vaccineslot);
        bedcard = view.findViewById(R.id.bedcard);
        downloadcert = view.findViewById(R.id.downloadcard);
+       helpline = view.findViewById(R.id.helpline);
+
+       helpline.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(getActivity(), HelplineActivity.class);
+               startActivity(intent);
+           }
+       });
 
        downloadcert.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -227,15 +243,70 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
+        adContainerView = view.findViewById(R.id.ad_view_container);
+        adContainerView.post(new Runnable() {
+            @Override
+            public void run() {
+                loadBanner();
+            }
+        });
 
 
         return view;
     }
 
 
+    @Override
+    public void onPause() {
+        if (adView != null) {
+            adView.pause();
+        }
+        super.onPause();
+    }
 
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
+    }
+
+
+    private void loadBanner() {
+        // Create an ad request.
+        adView = new AdView(getActivity());
+        adView.setAdUnitId("ca-app-pub-8669188519734324/8103166121");
+        adContainerView.removeAllViews();
+        adContainerView.addView(adView);
+
+        AdSize adSize = getAdSize();
+        adView.setAdSize(adSize);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        // Start loading the ad in the background.
+        adView.loadAd(adRequest);
+    }
+
+    private AdSize getAdSize() {
+        // Determine the screen width (less decorations) to use for the ad width.
+        Display display = getActivity().getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float density = outMetrics.density;
+
+        float adWidthPixels = adContainerView.getWidth();
+
+        // If the ad hasn't been laid out, default to the full screen width.
+        if (adWidthPixels == 0) {
+            adWidthPixels = outMetrics.widthPixels;
+        }
+
+        int adWidth = (int) (adWidthPixels / density);
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(getActivity(), adWidth);
+    }
 
     private void getIndianData(){
 

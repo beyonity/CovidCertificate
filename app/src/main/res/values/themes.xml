@@ -14,6 +14,7 @@
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:datePickerDialogTheme">@style/DatePickerStyle</item>
+        <item name="android:alertDialogTheme">@style/DatePickerStyle</item>
       <item name="android:windowLightStatusBar">true</item>
         <!--<item name="android:statusBarColor">@color/Gray_Cloud</item>-->
         <!-- Customize your theme here. -->
@@ -28,5 +29,9 @@
     <style name="DatePickerStyle" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="colorAccent">@color/Blueberry_Blue</item>
         <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
+    </style>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/Blueberry_Blue</item>
     </style>
 </resources>

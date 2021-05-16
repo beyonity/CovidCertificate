@@ -10,14 +10,15 @@ import java.util.List;
 
 public class Constants {
 
-    public static String LINK = "http://192.168.1.104:5300";
+    public static String LINK = "https://bogarsoft.com";
     public static String GET_ALL_COUNTRIES = "https://restcountries.eu/rest/v2/all";
     public static String GET_COUNTRY_STATE = "https://disease.sh/v3/covid-19/countries/";
     public static String GET_INDIAN_STATS = "https://api.covid19india.org/state_district_wise.json";
     public static String NEWS = "https://saurav.tech/NewsAPI/top-headlines/category/health/in.json";
     public static String GET_SETU_STATES = "https://cdn-api.co-vin.in/api/v2/admin/location/states";
     public static String GET_SETU_DISTRICTS = "https://cdn-api.co-vin.in/api/v2/admin/location/districts";
-    public static String GET_STATES = LINK+"/getstates";
+    public static String GET_HELPLINE = LINK+"/gethelpline";
+    public static String GET_APP_UPDATE = LINK+"/getappupdate";
     public static String FIND_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?";
     public static String FIND_BY_PINCODE = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?";
     public static String GET_BEDS = "https://api.rootnet.in/covid19-in/hospitals/beds";

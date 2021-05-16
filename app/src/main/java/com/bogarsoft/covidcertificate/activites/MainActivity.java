@@ -1,14 +1,21 @@
 package com.bogarsoft.covidcertificate.activites;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -30,6 +37,8 @@ import com.google.android.gms.ads.RequestConfiguration;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textview.MaterialTextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-
+    int version_code = 0;
     String selectedCountry = "IND";
     BottomNavigationView bottomNavigationView;
     ViewPager viewPager;
@@ -64,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
+
+        try {
+            PackageInfo pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version_code = pInfo.versionCode;
+            Log.d(TAG, "onCreate: "+pInfo.versionCode);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
 
         List<String> testDeviceIds = Arrays.asList("7D6FA30B926B8CC2F3CC9434DDB21731");
         RequestConfiguration configuration =
@@ -151,6 +168,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(3);
 
 
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                checkAppUpdate();
+            }
+        },5000);
         //getCountries();
 
     }
@@ -223,6 +249,115 @@ public class MainActivity extends AppCompatActivity {
             //handler.postDelayed(refreshCovidData,60000);
         }
     };
+
+
+    private void checkAppUpdate(){
+        Log.d(TAG, "checkAppUpdate: called");
+
+        AndroidNetworking.get(Constants.GET_APP_UPDATE)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "onResponse: "+response);
+                        try {
+                            JSONObject data = response.getJSONObject("data");
+                            String vn = data.getString("versionname");
+                            int vc = data.getInt("versioncode");
+                            if((vc - version_code)>3 ){
+
+
+                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                                alertDialog.setCancelable(false);
+                                View view = getLayoutInflater().inflate(R.layout.confirmation_dialog,null);
+                                MaterialTextView t,m;
+                                MaterialButton positivebtn,negativebtn;
+
+                                t = view.findViewById(R.id.title);
+                                m = view.findViewById(R.id.message);
+                                t.setText("Update Available");
+                                m.setText("A new Version "+data.getString("versionname")+" is available now, Your app version is outdated please udpate now");
+                                positivebtn = view.findViewById(R.id.postiviebtn);
+                                negativebtn = view.findViewById(R.id.negativebtn);
+                                negativebtn.setVisibility(View.GONE);
+                                positivebtn.setText("Update Now");
+                                alertDialog.setView(view);
+                                androidx.appcompat.app.AlertDialog dialog = alertDialog.show();
+                                dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_bg);
+
+
+
+                                positivebtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                        try {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+                                        } catch (android.content.ActivityNotFoundException anfe) {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+                                        }
+                                    }
+                                });
+
+
+
+
+
+                            }else if(vc > version_code){
+
+                                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                                alertDialog.setCancelable(false);
+                                View view = getLayoutInflater().inflate(R.layout.confirmation_dialog,null);
+                                MaterialTextView t,m;
+                                MaterialButton positivebtn,negativebtn;
+
+                                t = view.findViewById(R.id.title);
+                                m = view.findViewById(R.id.message);
+                                t.setText("Update Available");
+                                m.setText("A new Version " + data.getString("versionname") + " is available now, please udpate now");
+                                positivebtn = view.findViewById(R.id.postiviebtn);
+                                negativebtn = view.findViewById(R.id.negativebtn);
+                                positivebtn.setText("Update Now");
+                                negativebtn.setText("Close");
+                                alertDialog.setView(view);
+                                androidx.appcompat.app.AlertDialog dialog = alertDialog.show();
+                                dialog.getWindow().setBackgroundDrawableResource(R.drawable.custom_dialog_bg);
+
+
+                                negativebtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+
+                                    }
+                                });
+                                positivebtn.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialog.dismiss();
+                                        try {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + getPackageName())));
+                                        } catch (android.content.ActivityNotFoundException anfe) {
+                                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName())));
+                                        }
+                                    }
+                                });
+
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.d(TAG, "onError: "+anError.getErrorDetail());
+                    }
+                });
+
+    }
+
 
 
 

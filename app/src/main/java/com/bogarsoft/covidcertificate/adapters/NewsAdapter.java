@@ -200,4 +200,6 @@ public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         nativeAdView.setNativeAd(nativeAd);
 
     }
+
+
 }

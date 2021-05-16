@@ -32,6 +32,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 public class DownloadVaccineCertificateActivity extends AppCompatActivity {
 
@@ -77,17 +78,18 @@ public class DownloadVaccineCertificateActivity extends AppCompatActivity {
                     }
                     Log.d(TAG, "onClick: "+phone.getText().toString().trim());
                     JSONObject body = new JSONObject();
+
                     try {
                         body.put("mobile",phone.getText().toString().trim());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+
                     AndroidNetworking.post(Constants.GENERATE_OTP)
                             .addHeaders("accept","application/json")
-                            .addHeaders("Accept-Language","en_US")
                             .addHeaders("charset","utf-8")
-                            .addHeaders("Content-Type","application/json")
-                            .addHeaders("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
+                            .setContentType("application/json")
+                            .setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
                             .addJSONObjectBody(body)
                             .build()
                             .getAsJSONObject(new JSONObjectRequestListener() {
@@ -138,18 +140,20 @@ public class DownloadVaccineCertificateActivity extends AppCompatActivity {
                             .toString();
 
                     JSONObject body = new JSONObject();
+
                     try {
                         body.put("otp",sha256hex);
                         body.put("txnId",txnId);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+
+
                     AndroidNetworking.post(Constants.CONFIRM_OTP)
                             .addHeaders("accept","application/json")
-                            .addHeaders("Accept-Language","en_US")
-                            .addHeaders("Content-Type","application/json")
-                            .addHeaders("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
-                            .addBodyParameter(body)
+                            .setContentType("application/json")
+                            .setUserAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
+                            .addJSONObjectBody(body)
                             .build()
                             .getAsJSONObject(new JSONObjectRequestListener() {
                                 @Override

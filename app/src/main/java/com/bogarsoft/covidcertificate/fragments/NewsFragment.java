@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,9 @@ import com.bogarsoft.covidcertificate.R;
 import com.bogarsoft.covidcertificate.adapters.NewsAdapter;
 import com.bogarsoft.covidcertificate.models.News;
 import com.bogarsoft.covidcertificate.utils.Constants;
+
+import com.faltenreich.skeletonlayout.Skeleton;
+import com.faltenreich.skeletonlayout.SkeletonLayoutUtils;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
@@ -62,7 +66,7 @@ public class NewsFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     List<NativeAd> ad = new ArrayList<>();
     int index = 5;
-
+    private Skeleton skeleton;
     private AdLoader adLoader;
     private static final String TAG = "NewsFragment";
     RecyclerView rv;
@@ -124,6 +128,7 @@ public class NewsFragment extends Fragment {
 
        // refreshAd(view);
 
+        skeleton = SkeletonLayoutUtils.applySkeleton(rv,R.layout.news_list);
         getData();
 
         return view;
@@ -242,6 +247,7 @@ public class NewsFragment extends Fragment {
     }
 
     private void getData(){
+        skeleton.showSkeleton();
         AndroidNetworking.get(Constants.NEWS)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -249,6 +255,7 @@ public class NewsFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         swipeRefreshLayout.setRefreshing(false);
                         Log.d(TAG, "onResponse: "+response);
+                        skeleton.showOriginal();
                         newsList.clear();
                         try {
                             JSONArray articles = response.getJSONArray("articles");
@@ -284,6 +291,7 @@ public class NewsFragment extends Fragment {
 
                     @Override
                     public void onError(ANError anError) {
+                        skeleton.showOriginal();
                         swipeRefreshLayout.setRefreshing(false);
                         Log.d(TAG, "onError: "+anError.getErrorDetail());
                     }
@@ -392,7 +400,14 @@ public class NewsFragment extends Fragment {
     }
 
 
+    @Override
+    public void onDestroyView() {
 
-
-
+        if (ad.size()>0){
+            for (NativeAd a:ad){
+                a.destroy();
+            }
+        }
+        super.onDestroyView();
+    }
 }

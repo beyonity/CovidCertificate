@@ -8,12 +8,15 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +31,11 @@ import com.bogarsoft.covidcertificate.models.State;
 import com.bogarsoft.covidcertificate.models.VaccineTracker;
 import com.bogarsoft.covidcertificate.utils.Constants;
 import com.bogarsoft.covidcertificate.utils.StorageUtility;
+import com.faltenreich.skeletonlayout.Skeleton;
+import com.faltenreich.skeletonlayout.SkeletonLayoutUtils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -42,6 +50,9 @@ import java.util.List;
 
 public class VaccineActivity extends AppCompatActivity {
 
+    private FrameLayout adContainerView;
+    private AdView adView;
+    Skeleton skeleton;
     private static final String TAG = "VaccineACtivity";
     Spinner states,districts;
     ArrayAdapter<State> stateArrayAdapter;
@@ -82,7 +93,6 @@ public class VaccineActivity extends AppCompatActivity {
             }
         });
         userIsInteracting = false;
-
         storageUtility = new StorageUtility(getApplicationContext());
 
         noslotavailable = findViewById(R.id.emptyslot);
@@ -173,12 +183,73 @@ public class VaccineActivity extends AppCompatActivity {
             }
         });
 
-
+        skeleton = SkeletonLayoutUtils.applySkeleton(rv,R.layout.vaccine_tracker_list);
+        adContainerView = findViewById(R.id.ad_view_container);
+        adContainerView.post(new Runnable() {
+            @Override
+            public void run() {
+                loadBanner();
+            }
+        });
         updateLabel();
     }
 
+    @Override
+    public void onPause() {
+        if (adView != null) {
+            adView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        if (adView != null) {
+            adView.destroy();
+        }
+        super.onDestroy();
+    }
+
+
+    private void loadBanner() {
+        // Create an ad request.
+        adView = new AdView(VaccineActivity.this);
+        adView.setAdUnitId("ca-app-pub-8669188519734324/5301619254");
+        adContainerView.removeAllViews();
+        adContainerView.addView(adView);
+
+        AdSize adSize = getAdSize();
+        adView.setAdSize(adSize);
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        // Start loading the ad in the background.
+        adView.loadAd(adRequest);
+    }
+
+    private AdSize getAdSize() {
+        // Determine the screen width (less decorations) to use for the ad width.
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float density = outMetrics.density;
+
+        float adWidthPixels = adContainerView.getWidth();
+
+        // If the ad hasn't been laid out, default to the full screen width.
+        if (adWidthPixels == 0) {
+            adWidthPixels = outMetrics.widthPixels;
+        }
+
+        int adWidth = (int) (adWidthPixels / density);
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(VaccineActivity.this, adWidth);
+    }
+
+
 
     private void getData(){
+
         AndroidNetworking.get(Constants.GET_SETU_STATES)
                 .addHeaders("accept","application/json")
                 .addHeaders("Accept-Language","en_US")
@@ -188,6 +259,7 @@ public class VaccineActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         stateList.clear();
+
                         Log.d(TAG, "onResponse: "+response);
                         try {
                             JSONArray statesarray = response.getJSONArray("states");
@@ -224,6 +296,7 @@ public class VaccineActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
+
                         Log.d(TAG, "onError: "+anError.getErrorBody());
                     }
                 });
@@ -287,7 +360,7 @@ public class VaccineActivity extends AppCompatActivity {
     }
 
     private void getVaccinesDetails(String district_id){
-
+        skeleton.showSkeleton();
         String link = Constants.FIND_BY_DISTRICT+"district_id="+district_id+"&date="+Constants.getDate(myCalendar.getTimeInMillis(),"dd MM yyyy");
         Log.d(TAG, "getVaccinesDetails: "+link);
         AndroidNetworking.get(link)
@@ -300,6 +373,7 @@ public class VaccineActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "onResponse: "+response);
                         vaccineTrackerList.clear();
+                        skeleton.showOriginal();
                         try {
                             JSONArray jsonArray = response.getJSONArray("sessions");
                             for (int a = 0;a<jsonArray.length();a++){
@@ -349,6 +423,7 @@ public class VaccineActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(ANError anError) {
+                        skeleton.showOriginal();
                         Log.d(TAG, "onError: "+anError.getErrorDetail());
                     }
                 });

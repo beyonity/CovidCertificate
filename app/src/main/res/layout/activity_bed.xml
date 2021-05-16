@@ -134,6 +134,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/ad_view_container"
         android:layout_below="@id/heading"
         android:id="@+id/rv"/>
+    <FrameLayout
+        android:id="@+id/ad_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
