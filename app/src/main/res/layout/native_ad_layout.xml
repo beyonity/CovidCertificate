@@ -32,7 +32,7 @@
                 <ImageView
                     android:id="@+id/adv_icon"
                     android:layout_width="50dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:adjustViewBounds="true"
                     android:padding="5dp"
                     android:scaleType="fitXY" />
