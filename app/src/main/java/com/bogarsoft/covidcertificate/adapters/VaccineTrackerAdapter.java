@@ -44,9 +44,11 @@ public class VaccineTrackerAdapter extends RecyclerView.Adapter<VaccineTrackerAd
         holder.vaccinename.setText(vaccineTracker.getVaccinename());
         holder.otime.setText("From : "+vaccineTracker.getOtime());
         holder.ctime.setText("To : "+vaccineTracker.getCtime());
-        holder.address.setText(vaccineTracker.getAddress());
-        holder.pincode.setText(vaccineTracker.getPincode());
+        holder.address.setText(vaccineTracker.getAddress()+" ,"+vaccineTracker.getDistrict());
+        holder.pincode.setText(vaccineTracker.getState()+"-"+vaccineTracker.getPincode());
         holder.slots.setText(vaccineTracker.getSlots());
+        holder.fee.setText(vaccineTracker.getFee().equals("0") ? "Free" : vaccineTracker.getFee());
+
 
     }
 
@@ -56,7 +58,7 @@ public class VaccineTrackerAdapter extends RecyclerView.Adapter<VaccineTrackerAd
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView centername,avacapacity,date,vaccinename,otime,ctime,address,pincode,slots,minage;
+        TextView centername,avacapacity,date,vaccinename,otime,ctime,address,pincode,slots,minage,fee;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             centername = itemView.findViewById(R.id.centername);
@@ -69,6 +71,7 @@ public class VaccineTrackerAdapter extends RecyclerView.Adapter<VaccineTrackerAd
             pincode = itemView.findViewById(R.id.pincode);
             slots = itemView.findViewById(R.id.slots);
             minage = itemView.findViewById(R.id.minage);
+            fee = itemView.findViewById(R.id.fee);
         }
     }
 }

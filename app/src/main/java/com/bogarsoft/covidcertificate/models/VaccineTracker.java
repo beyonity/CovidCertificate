@@ -12,6 +12,43 @@ public class VaccineTracker {
     String pincode;
     String slots;
     String minage;
+    String fee;
+
+    String block;
+    String state;
+    String district;
+
+    public String getBlock() {
+        return block;
+    }
+
+    public void setBlock(String block) {
+        this.block = block;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getFee() {
+        return fee;
+    }
+
+    public void setFee(String fee) {
+        this.fee = fee;
+    }
 
     public String getMinage() {
         return minage;

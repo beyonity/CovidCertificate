@@ -19,6 +19,7 @@ public class Constants {
     public static String GET_SETU_DISTRICTS = "https://cdn-api.co-vin.in/api/v2/admin/location/districts";
     public static String GET_STATES = LINK+"/getstates";
     public static String FIND_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?";
+    public static String FIND_BY_PINCODE = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?";
 
     public static List<Country> countryList = new ArrayList<>();
     public static List<State> stateList = new ArrayList<>();
