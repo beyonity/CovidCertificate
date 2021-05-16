@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".helpline_numbers" >
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabIconTintMode="multiply"
+        app:tabIndicator="@color/Algae_Green"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/Burgundy"
+        app:tabTextColor="@color/Black">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/phone"
+            android:text="Phone" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/whats"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:text="WhatsApp" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <include
+        layout="@layout/phonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
