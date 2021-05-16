@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragments.covid_tracker">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:backgroundTint="@color/white"
+        android:id="@+id/appbar"
+        android:layout_height="wrap_content">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/white"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/back"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:insetLeft="0dp"
+                    android:insetTop="0dp"
+                    android:insetRight="0dp"
+                    android:insetBottom="0dp"
+                    android:padding="0dp"
+                    app:icon="@drawable/ic_baseline_keyboard_backspace_24"
+                    app:iconGravity="textStart"
+                    app:iconPadding="0dp"
+                    app:iconSize="24dp"
+                    app:iconTint="@color/black"
+                    app:rippleColor="@color/Bronze"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
+                    app:strokeWidth="0dp" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Download Vaccine Certificate"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+<LinearLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@id/appbar"
+    android:orientation="vertical"
+    android:layout_weight="2"
+    tools:context=".activites.DownloadVaccineCertificateActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+        
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@drawable/mobile"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Verification"
+            android:layout_marginTop="10dp"
+            android:textSize="22sp"
+            android:fontFamily="@font/roboto_bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="We Will Send you OTP on you Phone"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:id="@+id/desc"
+            android:fontFamily="@font/roboto_medium"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:hint="Enter Phone Number"
+            android:layout_marginTop="60dp"
+            app:boxStrokeColor="@color/Greenish_Blue"
+            android:textColorHint="@color/black"
+            android:id="@+id/phonelayout"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            android:layout_marginEnd="50dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:id="@+id/phone"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            app:passwordToggleEnabled="true"
+            android:layout_below="@+id/phonelayout"
+            android:hint="Enter OTP"
+            android:id="@+id/otplayout"
+            app:boxStrokeColor="@color/Greenish_Blue"
+            android:textColorHint="@color/black"
+            app:endIconTint="@color/black"
+            app:hintTextColor="@color/black"
+            android:layout_marginEnd="50dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberPassword"
+                android:textAlignment="center"
+                android:id="@+id/otp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:hint="Enter Beneficiary Reference Id"
+            app:boxStrokeColor="@color/Greenish_Blue"
+            android:textColorHint="@color/black"
+            app:endIconTint="@color/black"
+            android:id="@+id/reflayout"
+            android:layout_below="@+id/otplayout"
+            app:hintTextColor="@color/black"
+            android:layout_marginEnd="50dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:id="@+id/refid"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_below="@id/reflayout"
+            android:layout_marginStart="50dp"
+            app:cornerRadius="5dp"
+            android:id="@+id/btn"
+            android:backgroundTint="@color/Greenish_Blue"
+            android:text="get otp"
+            android:layout_marginTop="10dp"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>
+    
+</RelativeLayout>

@@ -23,6 +23,8 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bogarsoft.covidcertificate.R;
+import com.bogarsoft.covidcertificate.activites.BedActivity;
+import com.bogarsoft.covidcertificate.activites.DownloadVaccineCertificateActivity;
 import com.bogarsoft.covidcertificate.activites.VaccineActivity;
 import com.bogarsoft.covidcertificate.models.District;
 import com.bogarsoft.covidcertificate.models.State;
@@ -52,7 +54,7 @@ public class HomeFragment extends Fragment {
 
     private static final String TAG = "HomeFragment";
 
-    MaterialCardView materialCardView;
+    MaterialCardView materialCardView,bedcard,downloadcert;
     SwipeRefreshLayout swipeRefreshLayout;
     Spinner states;
     Spinner districts;
@@ -119,6 +121,23 @@ public class HomeFragment extends Fragment {
         districts = view.findViewById(R.id.district);
 
        materialCardView = view.findViewById(R.id.vaccineslot);
+       bedcard = view.findViewById(R.id.bedcard);
+       downloadcert = view.findViewById(R.id.downloadcard);
+
+       downloadcert.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(getActivity(), DownloadVaccineCertificateActivity.class);
+               startActivity(intent);
+           }
+       });
+       bedcard.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent(getActivity(), BedActivity.class);
+               startActivity(intent);
+           }
+       });
         materialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

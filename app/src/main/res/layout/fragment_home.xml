@@ -169,6 +169,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:paddingTop="25dp"
+                android:id="@+id/downloadcard"
                 app:cardBackgroundColor="@color/Milk_White"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="5dp"
@@ -208,7 +209,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:paddingTop="25dp"
-
+                android:id="@+id/bedcard"
                 app:cardBackgroundColor="@color/Milk_White"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="5dp"
@@ -307,7 +308,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/helpline" />
+                        android:src="@drawable/stati" />
 
                     <TextView
                         android:layout_width="match_parent"

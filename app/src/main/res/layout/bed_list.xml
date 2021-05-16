@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
+    android:id="@+id/card"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="Tamil Nadu"
+            android:id="@+id/state"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ruralhospitals"
+            android:text="20000"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_medium"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ruralbeds"
+            android:text="20000"
+
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_medium"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/urbanhospitals"
+            android:text="20000"
+            android:gravity="center"
+
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_medium"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/urbanbeds"
+            android:text="20000"
+            android:gravity="center"
+
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:fontFamily="@font/roboto_medium"/>
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

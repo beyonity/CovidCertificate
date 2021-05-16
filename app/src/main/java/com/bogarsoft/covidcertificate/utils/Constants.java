@@ -20,6 +20,10 @@ public class Constants {
     public static String GET_STATES = LINK+"/getstates";
     public static String FIND_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?";
     public static String FIND_BY_PINCODE = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?";
+    public static String GET_BEDS = "https://api.rootnet.in/covid19-in/hospitals/beds";
+    public static String GENERATE_OTP = "https://cdn-api.co-vin.in/api/v2/auth/public/generateOTP";
+    public static String CONFIRM_OTP = "https://cdn-api.co-vin.in/api/v2/auth/public/confirmOTP";
+    public static String DOWNLOAD_CERTIFICATE = "https://cdn-api.co-vin.in/api/v2/registration/certificate/public/download";
 
     public static List<Country> countryList = new ArrayList<>();
     public static List<State> stateList = new ArrayList<>();
