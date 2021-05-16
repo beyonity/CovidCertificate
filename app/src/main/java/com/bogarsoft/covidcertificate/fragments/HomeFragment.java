@@ -23,14 +23,13 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bogarsoft.covidcertificate.R;
-import com.bogarsoft.covidcertificate.activites.VaccineACtivity;
+import com.bogarsoft.covidcertificate.activites.VaccineActivity;
 import com.bogarsoft.covidcertificate.models.District;
 import com.bogarsoft.covidcertificate.models.State;
 import com.bogarsoft.covidcertificate.utils.Constants;
 import com.bogarsoft.covidcertificate.utils.StorageUtility;
 
 import com.google.android.material.card.MaterialCardView;
-import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -119,20 +118,20 @@ public class HomeFragment extends Fragment {
         states = view.findViewById(R.id.states);
         districts = view.findViewById(R.id.district);
 
-       /* materialCardView = view.findViewById(R.id.vaccineslot);
+       materialCardView = view.findViewById(R.id.vaccineslot);
         materialCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), VaccineACtivity.class);
+                Intent intent = new Intent(getActivity(), VaccineActivity.class);
                 startActivity(intent);
             }
-        });*/
-        stateArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Constants.stateList);
-        stateArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        });
+        stateArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, Constants.stateList);
+        stateArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         states.setAdapter(stateArrayAdapter);
 
-        districtArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,districtList);
-        districtArrayAdapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        districtArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,districtList);
+        districtArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         districts.setAdapter(districtArrayAdapter);
 
 

@@ -10,8 +10,15 @@ public class State {
     String recovered;
     String death;
     String confirmed;
+    String state_id;
 
+    public String getState_id() {
+        return state_id;
+    }
 
+    public void setState_id(String state_id) {
+        this.state_id = state_id;
+    }
 
     List<District> districtList = new ArrayList<>();
 

@@ -13,6 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:datePickerDialogTheme">@style/DatePickerStyle</item>
       <item name="android:windowLightStatusBar">true</item>
         <!--<item name="android:statusBarColor">@color/Gray_Cloud</item>-->
         <!-- Customize your theme here. -->
@@ -22,5 +23,10 @@
     <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="DatePickerStyle" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorAccent">@color/Blueberry_Blue</item>
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button.TextButton</item>
     </style>
 </resources>

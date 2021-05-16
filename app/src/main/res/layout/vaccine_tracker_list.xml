@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
+                android:id="@+id/centername"
                 android:text="PHC NAME"
                 android:textColor="@color/Black"
                 android:textSize="20sp"
@@ -63,6 +64,7 @@
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
                         android:text="7"
+                        android:id="@+id/avbcapacity"
                         android:textColor="@color/Milk_White"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -97,6 +99,7 @@
                         android:layout_height="wrap_content"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
+                        android:id="@+id/date"
                         android:text="10-02-2021"
                         android:textColor="@color/Milk_White"
                         android:textSize="16sp"
@@ -133,6 +136,7 @@
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
                         android:text="COVISHEILD"
+                        android:id="@+id/vaccinename"
                         android:textColor="@color/Milk_White"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -168,6 +172,7 @@
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
                         android:text="45"
+                        android:id="@+id/minage"
                         android:textColor="@color/Milk_White"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -184,7 +189,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -192,7 +197,7 @@
                 android:text="Address" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/pincode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -215,7 +220,7 @@
                     app:contentPadding="5dp">
 
                     <TextView
-                        android:id="@+id/textView16"
+                        android:id="@+id/otime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Opening Time : "
@@ -234,7 +239,7 @@
                     app:contentPadding="5dp" >
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/ctime"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="CLosing Time : "
@@ -277,7 +282,7 @@
                 android:background="@color/AntiqueWhite" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/slots"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="11.00"

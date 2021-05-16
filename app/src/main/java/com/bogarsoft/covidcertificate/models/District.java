@@ -7,6 +7,24 @@ public class District {
     String recovered;
     String death;
     String confirmed;
+    String state_id;
+    String district_id;
+
+    public String getState_id() {
+        return state_id;
+    }
+
+    public void setState_id(String state_id) {
+        this.state_id = state_id;
+    }
+
+    public String getDistrict_id() {
+        return district_id;
+    }
+
+    public void setDistrict_id(String district_id) {
+        this.district_id = district_id;
+    }
 
     public String getConfirmed() {
         return confirmed;
