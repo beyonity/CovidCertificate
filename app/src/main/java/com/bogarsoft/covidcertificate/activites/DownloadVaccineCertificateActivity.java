@@ -148,9 +148,8 @@ public class DownloadVaccineCertificateActivity extends AppCompatActivity {
                             .addHeaders("accept","application/json")
                             .addHeaders("Accept-Language","en_US")
                             .addHeaders("Content-Type","application/json")
-                            .addHeaders("charset","utf-8")
                             .addHeaders("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
-                            .addUrlEncodeFormBodyParameter(body)
+                            .addBodyParameter(body)
                             .build()
                             .getAsJSONObject(new JSONObjectRequestListener() {
                                 @Override
