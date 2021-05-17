@@ -121,6 +121,7 @@ public class DownloadVaccineCertificate extends Fragment {
                 goback.setVisibility(View.GONE);
                 txnId = "";
                 token = "";
+                mode = 0;
             }
         });
         btn.setOnClickListener(new View.OnClickListener() {
