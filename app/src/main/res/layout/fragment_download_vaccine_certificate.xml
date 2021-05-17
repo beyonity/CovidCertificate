@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Milk_White"
+    android:orientation="vertical"
     tools:context=".fragments.DownloadVaccineCertificate">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/appbar"
-        android:layout_weight="2"
-        android:orientation="vertical"
-        tools:context=".activites.DownloadVaccineCertificateActivity">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,6 +25,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
+                android:contentDescription="@string/todo"
                 android:src="@drawable/mobile" />
 
             <TextView
@@ -34,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Verification"
+                android:text="@string/verification"
                 android:textSize="22sp" />
 
             <TextView
@@ -43,7 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="We will send you OTP on your phone"
+                android:padding="5dp"
+                android:text="@string/please_enter_registered_mobile_number_given_at_the_time_of_vaccination"
+                android:textAlignment="center"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -60,7 +61,7 @@
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="50dp"
-                android:hint="Enter Phone Number"
+                android:hint="@string/enter_phone_number"
                 android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/Greenish_Blue"
                 app:endIconTint="@color/black"
@@ -82,7 +83,7 @@
                 android:layout_below="@+id/phonelayout"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:hint="Enter OTP"
+                android:hint="@string/enter_otp"
                 android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/Greenish_Blue"
                 app:endIconTint="@color/black"
@@ -105,7 +106,7 @@
                 android:layout_below="@+id/otplayout"
                 android:layout_marginStart="50dp"
                 android:layout_marginEnd="50dp"
-                android:hint="Enter Beneficiary Reference Id"
+                android:hint="@string/enter_beneficiary_reference_id"
                 android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/Greenish_Blue"
                 app:endIconTint="@color/black"
@@ -128,7 +129,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="50dp"
                 android:backgroundTint="@color/Greenish_Blue"
-                android:text="get otp"
+                android:text="@string/get_otp"
                 app:cornerRadius="5dp" />
 
             <com.google.android.material.button.MaterialButton
@@ -141,7 +142,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="50dp"
                 android:backgroundTint="@color/Platinum"
-                android:text="Go Back"
+                android:text="@string/go_back"
                 android:textColor="@color/black"
                 app:cornerRadius="5dp" />
 
@@ -149,4 +150,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

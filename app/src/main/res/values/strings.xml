@@ -6,6 +6,14 @@
         COVID-19 Vaccine Certificate downloads are directly from Government data.
         All Indians can download their vaccine certificate anytime anywhere from our app. Get hospital details, Covid helpline, Vaccination information, Latest Covid-19 news, etc. More coming from us. </string>
     <string name="shareus">Share and Support Us</string>
+    <string name="verification">Verification</string>
+    <string name="enter_phone_number">Enter Phone Number</string>
+    <string name="todo">TODO</string>
+    <string name="please_enter_registered_mobile_number_given_at_the_time_of_vaccination">Please enter Registered mobile number given at the time of Vaccination</string>
+    <string name="go_back">Go Back</string>
+    <string name="get_otp">get otp</string>
+    <string name="enter_beneficiary_reference_id">Enter Beneficiary Reference Id</string>
+    <string name="enter_otp">Enter OTP</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
