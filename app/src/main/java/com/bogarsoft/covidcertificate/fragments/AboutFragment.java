@@ -25,7 +25,7 @@ public class AboutFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    ImageButton telegram;
+    ImageButton telegram,bogarsoft;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -67,10 +67,19 @@ public class AboutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_about, container, false);
         telegram = view.findViewById(R.id.telegram);
+        bogarsoft = view.findViewById(R.id.bogarsoft);
         telegram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://t.me/covinapp"));
+                startActivity(telegram);
+            }
+        });
+
+        bogarsoft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://t.me/bogarsoft"));
                 startActivity(telegram);
             }
         });
