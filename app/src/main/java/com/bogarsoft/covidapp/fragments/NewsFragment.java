@@ -367,7 +367,7 @@ public class NewsFragment extends Fragment {
 
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                    Toast.makeText(getContext(), loadAdError.toString(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(getContext(), loadAdError.toString(), Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onAdFailedToLoad: "+loadAdError.getResponseInfo());
                     super.onAdFailedToLoad(loadAdError);
                 }
