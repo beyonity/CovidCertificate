@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bogarsoft.covidapp.R;
+import com.google.android.material.card.MaterialCardView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,7 +30,7 @@ public class AboutFragment extends Fragment {
 
     ImageButton telegram;
     ImageView bogarsoft;
-    TextView share;
+    MaterialCardView share;
 
     // TODO: Rename and change types of parameters
     private String mParam1;

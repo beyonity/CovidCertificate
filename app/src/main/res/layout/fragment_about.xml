@@ -53,15 +53,25 @@
         android:textAlignment="center"
         android:textColor="@color/Black" />
 
-    <TextView
-        android:id="@+id/share"
-        android:layout_width="match_parent"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/capriola"
-        android:text="@string/shareus"
-        android:textAlignment="center"
-        android:textColor="@color/Aztec_Purple"
-        android:textSize="16sp" />
+        android:layout_gravity="center"
+        android:id="@+id/share"
+        app:contentPadding="10dp"
+        app:rippleColor="@color/Platinum"
+        app:cardElevation="0dp">
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/capriola"
+            android:text="@string/shareus"
+            android:textAlignment="center"
+            android:textColor="@color/Aztec_Purple"
+            android:textSize="16sp" />
+    </com.google.android.material.card.MaterialCardView>
+
 
     <ImageButton
         android:id="@+id/telegram"
@@ -73,6 +83,7 @@
         android:background="@android:color/transparent"
         android:scaleType="centerInside"
         android:src="@drawable/tele" />
+
 
     <ImageView
         android:id="@+id/bogarsoft"
