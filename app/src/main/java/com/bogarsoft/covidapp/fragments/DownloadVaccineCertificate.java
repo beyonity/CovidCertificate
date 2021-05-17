@@ -121,7 +121,7 @@ public class DownloadVaccineCertificate extends Fragment {
                 otplayout.setVisibility(View.GONE);
                 reslayout.setVisibility(View.GONE);
                 btn.setText("get otp");
-                desc.setText("We Will Send you OTP on your Phone");
+                desc.setText(getString(R.string.registered_mobile));
                 goback.setVisibility(View.GONE);
                 txnId = "";
                 token = "";
@@ -306,7 +306,7 @@ public class DownloadVaccineCertificate extends Fragment {
                                     otplayout.setVisibility(View.GONE);
                                     reslayout.setVisibility(View.GONE);
                                     btn.setText("get otp");
-                                    desc.setText("We Will Send you OTP on your Phone");
+                                    desc.setText(getString(R.string.registered_mobile));
                                     goback.setVisibility(View.GONE);
                                     txnId = "";
                                     token = "";
