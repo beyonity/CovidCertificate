@@ -59,6 +59,7 @@
         android:layout_gravity="center"
         android:id="@+id/share"
         app:contentPadding="10dp"
+        app:cardCornerRadius="5dp"
         app:rippleColor="@color/Platinum"
         app:cardElevation="0dp">
         <TextView
