@@ -65,7 +65,7 @@ public class FileListAdapter extends RecyclerView.Adapter<FileListAdapter.ViewHo
 
 
         if (position %2==0){
-            holder.card.setBackgroundColor(activity.getResources().getColor(R.color.Platinum));
+            holder.card.setBackgroundColor(activity.getResources().getColor(R.color.Jet_Gray));
         }else {
             holder.card.setBackgroundColor(activity.getResources().getColor(R.color.white));
 
