@@ -18,6 +18,7 @@ public class Constants {
     public static String GET_SETU_STATES = "https://cdn-api.co-vin.in/api/v2/admin/location/states";
     public static String GET_SETU_DISTRICTS = "https://cdn-api.co-vin.in/api/v2/admin/location/districts";
     public static String GET_HELPLINE = LINK+"/gethelpline";
+    public static String GET_HOSPITALDETAILS = LINK+"/gethospitaldetails";
     public static String GET_APP_UPDATE = LINK+"/getappupdate";
     public static String FIND_BY_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?";
     public static String FIND_BY_PINCODE = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?";

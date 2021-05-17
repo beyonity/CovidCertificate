@@ -74,7 +74,7 @@ public class BedActivity extends AppCompatActivity {
 
     private void getData(){
         skeleton.showSkeleton();
-        AndroidNetworking.get(Constants.GET_BEDS)
+       /* AndroidNetworking.get(Constants.GET_BEDS)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -100,6 +100,23 @@ public class BedActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        skeleton.showOriginal();
+                        Log.d(TAG, "onError: "+anError.getErrorDetail());
+                    }
+                });*/
+
+
+        AndroidNetworking.get(Constants.GET_HOSPITALDETAILS)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        skeleton.showOriginal();
+                        Log.d(TAG, "onResponse: "+response);
                     }
 
                     @Override
