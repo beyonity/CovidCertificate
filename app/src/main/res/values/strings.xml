@@ -9,7 +9,7 @@
     <string name="verification">Verification</string>
     <string name="enter_phone_number">Enter Phone Number</string>
     <string name="todo">TODO</string>
-    <string name="please_enter_registered_mobile_number_given_at_the_time_of_vaccination">Please enter Registered mobile number given at the time of Vaccination</string>
+    <string name="registered_mobile">Please enter Registered mobile number given at the time of Vaccination</string>
     <string name="go_back">Go Back</string>
     <string name="get_otp">get otp</string>
     <string name="enter_beneficiary_reference_id">Enter Beneficiary Reference Id</string>
