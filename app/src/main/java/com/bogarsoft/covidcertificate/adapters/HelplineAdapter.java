@@ -50,10 +50,23 @@ public class HelplineAdapter extends RecyclerView.Adapter<HelplineAdapter.ViewHo
         holder.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentDial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + helpline.getPhone()));
-                activity.startActivity(intentDial);
+                if (helpline.getPhone().contains("-")){
+                    Intent intentDial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + helpline.getPhone()));
+                    activity.startActivity(intentDial);
+                }else {
+
+                    Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://wa.me/+91"+helpline.getPhone()));
+                    activity.startActivity(intent);
+                }
+
             }
         });
+        if ((helpline.getPhone().contains("-"))){
+            holder.call.setImageResource(R.drawable.telephone);
+        }else {
+
+            holder.call.setImageResource(R.drawable.whatsapp);
+        }
         if (position %2==0){
             holder.card.setBackgroundColor(activity.getResources().getColor(R.color.Platinum));
         }else {
