@@ -33,7 +33,7 @@
                     app:iconPadding="0dp"
                     app:iconSize="24dp"
                     app:iconTint="@color/black"
-                    app:rippleColor="@color/Bronze"
+                    app:rippleColor="@color/Platinum"
                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle"
                     app:strokeWidth="0dp" />
 
