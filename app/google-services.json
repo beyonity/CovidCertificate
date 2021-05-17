@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:295245236129:android:591961adbfa71b57e26de0",
+        "android_client_info": {
+          "package_name": "com.bogarsoft.covidapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "295245236129-fp4f4qv20dl2st4ur7imj1j7cmvndko3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdYQ19mqbSsqqmzPb5H-9AUz4urazkp3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "295245236129-fp4f4qv20dl2st4ur7imj1j7cmvndko3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:295245236129:android:aeb18668b011a257e26de0",
         "android_client_info": {
           "package_name": "com.bogarsoft.covidcertificate"
