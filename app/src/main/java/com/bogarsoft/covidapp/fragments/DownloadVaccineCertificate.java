@@ -1,6 +1,9 @@
 package com.bogarsoft.covidapp.fragments;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -258,6 +263,18 @@ public class DownloadVaccineCertificate extends Fragment {
                     String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
                     fileName = fileName+"_vaccine_certificte.pdf";
                     String finalFileName = fileName;
+                    Dialog dialog = new Dialog(getActivity());
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.getWindow().setBackgroundDrawable(
+                            new ColorDrawable(0));
+                    dialog.setContentView(R.layout.progress_dialog_bar2);
+                    ProgressBar progressBar = dialog.findViewById(R.id.progressBar);
+
+                    progressBar.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.Red), PorterDuff.Mode.MULTIPLY);
+                    progressBar.setIndeterminate(false);
+                    progressBar.setMax(100);
+                    dialog.setCancelable(false);
+                    dialog.show();
                     AndroidNetworking.download(Constants.DOWNLOAD_CERTIFICATE,getActivity().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath(),fileName)
                             .addHeaders("accept","application/pdf")
                             .addHeaders("User-Agent","Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36")
@@ -268,11 +285,22 @@ public class DownloadVaccineCertificate extends Fragment {
                                 @Override
                                 public void onProgress(long bytesDownloaded, long totalBytes) {
                                     Log.d(TAG, "onProgress: "+bytesDownloaded);
+                                    long percentage = ((bytesDownloaded*100)/totalBytes);
+                                    progressBar.setProgress((int) percentage);
+                                    if (Long.compare(bytesDownloaded, totalBytes) == 0) {
+                                        dialog.dismiss();
+                                        progressBar.setVisibility(View.INVISIBLE);
+
+                                        //Helper.sendToast( "Processing... please wait, May take a while", activity.getApplicationContext());
+                                    }
                                 }
                             })
                             .startDownload(new DownloadListener() {
                                 @Override
                                 public void onDownloadComplete() {
+                                    if (dialog.isShowing()){
+                                        dialog.dismiss();
+                                    }
                                     mode = 0;
                                     phonelayout.setVisibility(View.VISIBLE);
                                     otplayout.setVisibility(View.GONE);
@@ -282,6 +310,7 @@ public class DownloadVaccineCertificate extends Fragment {
                                     goback.setVisibility(View.GONE);
                                     txnId = "";
                                     token = "";
+                                    phone.setText("");
                                     Toast.makeText(getContext(), "Download completed", Toast.LENGTH_SHORT).show();
                                     File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath(), finalFileName);
                                     Uri fileUri = FileProvider.getUriForFile(getContext(), BuildConfig.APPLICATION_ID + ".provider", file);
@@ -296,8 +325,11 @@ public class DownloadVaccineCertificate extends Fragment {
 
                                 @Override
                                 public void onError(ANError anError) {
+                                    if (dialog.isShowing()){
+                                        dialog.dismiss();
+                                    }
                                     Log.d(TAG, "onError: "+anError.getErrorDetail());
-                                    Toast.makeText(getContext(), anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "Government Server Not responding Try later", Toast.LENGTH_SHORT).show();
                                     File file = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath(), finalFileName);
                                     if (file.exists()){
                                         file.delete();
