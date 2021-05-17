@@ -15,6 +15,7 @@
     <string name="enter_beneficiary_reference_id">Enter Beneficiary Reference Id</string>
     <string name="app_id">ca-app-pub-8669188519734324~8350578133</string>
     <string name="enter_otp">Enter OTP</string>
+    <string name="certificate_note">Note: If you\'re facing trouble while logging in or downloading the certificate please try after sometime.</string>
     <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
