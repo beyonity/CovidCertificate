@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.bogarsoft.covidapp.R;
 
 /**
@@ -27,6 +29,8 @@ public class AboutFragment extends Fragment {
 
     ImageButton telegram;
     ImageView bogarsoft;
+    TextView share;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -82,6 +86,22 @@ public class AboutFragment extends Fragment {
             public void onClick(View v) {
                 Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://t.me/bogarsoft"));
                 startActivity(telegram);
+            }
+        });
+
+        share = view.findViewById(R.id.share);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String link = "https://play.google.com/store/apps/details?id=" + getActivity().getPackageName();
+
+
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                i.putExtra(Intent.EXTRA_SUBJECT, "Covid App, All covid related data in one app");
+                i.putExtra(Intent.EXTRA_TEXT, link);
+                startActivity(Intent.createChooser(i, "Share app with friends"));
             }
         });
         return view;

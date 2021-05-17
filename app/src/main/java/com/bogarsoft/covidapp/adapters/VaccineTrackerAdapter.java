@@ -44,7 +44,7 @@ public class VaccineTrackerAdapter extends RecyclerView.Adapter<VaccineTrackerAd
         holder.vaccinename.setText(vaccineTracker.getVaccinename());
         holder.otime.setText("From : "+vaccineTracker.getOtime());
         holder.ctime.setText("To : "+vaccineTracker.getCtime());
-        holder.address.setText(vaccineTracker.getAddress()+" ,"+vaccineTracker.getDistrict());
+        holder.address.setText(vaccineTracker.getAddress()+", "+vaccineTracker.getBlock()+", "+vaccineTracker.getDistrict()+",");
         holder.pincode.setText(vaccineTracker.getState()+"-"+vaccineTracker.getPincode());
         holder.slots.setText(vaccineTracker.getSlots());
         holder.fee.setText(vaccineTracker.getFee().equals("0") ? "Free" : vaccineTracker.getFee());
