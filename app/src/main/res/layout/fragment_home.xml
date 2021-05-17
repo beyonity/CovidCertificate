@@ -167,16 +167,15 @@
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/downloadcard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:paddingTop="25dp"
-                android:id="@+id/downloadcard"
                 app:cardBackgroundColor="@color/Milk_White"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="5dp"
-                app:contentPadding="8dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -196,8 +195,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/capriola"
                         android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
+                        android:padding="5dp"
                         android:text="Download Vaccine Certificate"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
@@ -207,16 +205,15 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/bedcard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:paddingTop="25dp"
-                android:id="@+id/bedcard"
                 app:cardBackgroundColor="@color/Milk_White"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="5dp"
-                app:contentPadding="8dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -227,16 +224,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/beds" />
+                        android:src="@drawable/hospital" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/capriola"
                         android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                        android:text="Hospital and Bed Availability Tracker"
+                        android:padding="5dp"
+                        android:text="Find Hospital in your area"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
                         android:textStyle="bold" />
@@ -253,16 +249,15 @@
             android:orientation="horizontal">
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/vaccineslot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:paddingTop="25dp"
-                android:id="@+id/vaccineslot"
                 app:cardBackgroundColor="@color/Milk_White"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="5dp"
-                app:contentPadding="8dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -280,8 +275,7 @@
                         android:layout_height="match_parent"
                         android:fontFamily="@font/capriola"
                         android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
+                        android:padding="5dp"
                         android:text="Check Vaccination Slots in Hostipal"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
@@ -291,16 +285,15 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/helpline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_weight="1"
-                android:id="@+id/helpline"
                 android:paddingTop="25dp"
                 app:cardBackgroundColor="@color/Milk_White"
                 app:cardCornerRadius="15dp"
-                app:cardElevation="5dp"
-                app:contentPadding="8dp">
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -311,19 +304,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/stati" />
+                        android:src="@drawable/helpline" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:fontFamily="@font/capriola"
                         android:gravity="center"
-                        android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
                         android:text="Call Covid - 19 India Helpline"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:padding="5dp" />
 
                 </LinearLayout>
 
