@@ -280,6 +280,7 @@ public class DownloadVaccineCertificate extends Fragment {
                                     reslayout.setVisibility(View.GONE);
                                     btn.setText("get otp");
                                     desc.setText("We Will Send you OTP on your Phone");
+                                    goback.setVisibility(View.GONE);
                                     txnId = "";
                                     token = "";
                                     Toast.makeText(getContext(), "Download completed", Toast.LENGTH_SHORT).show();
