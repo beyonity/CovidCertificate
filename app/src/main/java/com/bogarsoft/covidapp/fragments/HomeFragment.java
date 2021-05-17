@@ -26,7 +26,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bogarsoft.covidapp.R;
-import com.bogarsoft.covidapp.activites.BedActivity;
+import com.bogarsoft.covidapp.activites.HospitalActivity;
 import com.bogarsoft.covidapp.activites.DownloadVaccineCertificateActivity;
 import com.bogarsoft.covidapp.activites.HelplineActivity;
 import com.bogarsoft.covidapp.activites.VaccineActivity;
@@ -150,7 +150,7 @@ public class HomeFragment extends Fragment {
        bedcard.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent intent = new Intent(getActivity(), BedActivity.class);
+               Intent intent = new Intent(getActivity(), HospitalActivity.class);
                startActivity(intent);
            }
        });

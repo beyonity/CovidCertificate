@@ -11,11 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bogarsoft.covidapp.R;
+import com.bogarsoft.covidapp.fragments.SelectPhoneDialog;
+import com.bogarsoft.covidapp.models.CallPhone;
 import com.bogarsoft.covidapp.models.Helpline;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class HelplineAdapter extends RecyclerView.Adapter<HelplineAdapter.ViewHolder> {
@@ -23,6 +29,16 @@ public class HelplineAdapter extends RecyclerView.Adapter<HelplineAdapter.ViewHo
         List<Helpline> helplineList;
         Activity activity;
 
+
+        OnCall onCall;
+
+    public void setOnCall(OnCall onCall) {
+        this.onCall = onCall;
+    }
+
+    public interface OnCall{
+            void onCall(Helpline helpline);
+        }
 
     public HelplineAdapter(List<Helpline> helplines, Activity activity) {
         this.helplineList = helplines;
@@ -43,28 +59,36 @@ public class HelplineAdapter extends RecyclerView.Adapter<HelplineAdapter.ViewHo
     public void onBindViewHolder(@NonNull HelplineAdapter.ViewHolder holder, int position) {
         Helpline helpline = helplineList.get(position);
         holder.state.setText(helpline.getState());
-        holder.regional.setText(helpline.getRegional());
+      //  holder.regional.setText(helpline.getRegional());
         holder.phone.setText(helpline.getPhone());
         holder.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (helpline.getPhone().contains("-")){
+              /*  if (helpline.getPhone().contains("-")){
                     Intent intentDial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + helpline.getPhone()));
                     activity.startActivity(intentDial);
                 }else {
 
                     Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("https://wa.me/+91"+helpline.getPhone()));
                     activity.startActivity(intent);
+                }*/
+
+                if (onCall!=null){
+                    onCall.onCall(helpline);
                 }
+
+
+
+
 
             }
         });
-        if ((helpline.getPhone().contains("-"))){
+       /* if ((helpline.getPhone().contains("-"))){
             holder.call.setImageResource(R.drawable.telephone);
         }else {
 
             holder.call.setImageResource(R.drawable.whatsapp);
-        }
+        }*/
         if (position %2==0){
             holder.card.setBackgroundColor(activity.getResources().getColor(R.color.Platinum));
         }else {
@@ -87,7 +111,7 @@ public class HelplineAdapter extends RecyclerView.Adapter<HelplineAdapter.ViewHo
             super(itemView);
             state = itemView.findViewById(R.id.state);
             phone = itemView.findViewById(R.id.phone);
-            regional = itemView.findViewById(R.id.district);
+            //regional = itemView.findViewById(R.id.district);
             call = itemView.findViewById(R.id.call);
             card = itemView.findViewById(R.id.linearlayout);
 

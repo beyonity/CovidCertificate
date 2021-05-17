@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CovidCertificate">
         <activity android:name="com.bogarsoft.covidapp.activites.DownloadVaccineCertificateActivity"></activity>
-        <activity android:name="com.bogarsoft.covidapp.activites.BedActivity" />
+        <activity android:name="com.bogarsoft.covidapp.activites.HospitalActivity" />
         <activity android:name="com.bogarsoft.covidapp.activites.VaccineActivity" />
         <activity android:name="com.bogarsoft.covidapp.activites.HelplineActivity" />
         <activity android:name="com.bogarsoft.covidapp.activites.MainActivity">

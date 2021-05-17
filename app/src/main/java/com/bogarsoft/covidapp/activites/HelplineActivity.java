@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -16,6 +18,8 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.bogarsoft.covidapp.R;
 import com.bogarsoft.covidapp.adapters.HelplineAdapter;
+import com.bogarsoft.covidapp.fragments.SelectPhoneDialog;
+import com.bogarsoft.covidapp.models.CallPhone;
 import com.bogarsoft.covidapp.models.Helpline;
 import com.bogarsoft.covidapp.utils.Constants;
 import com.faltenreich.skeletonlayout.Skeleton;
@@ -65,6 +69,41 @@ public class HelplineActivity extends AppCompatActivity {
                 loadBanner();
             }
         });
+
+        helplineAdapter.setOnCall(new HelplineAdapter.OnCall() {
+            @Override
+            public void onCall(Helpline helpline) {
+                if (helpline.getPhone().contains(",")){
+                    String[] numberslist = helpline.getPhone().split(",");
+                    List<CallPhone> callPhones = new ArrayList<>();
+                    for (String name : numberslist){
+
+                        CallPhone callPhone = new CallPhone();
+                        callPhone.setPhone(name);
+                        callPhone.setSelected(false);
+                        callPhones.add(callPhone);
+
+                    }
+                    SelectPhoneDialog dialog = new SelectPhoneDialog(callPhones);
+                    dialog.show(getSupportFragmentManager(),"Select");
+                    dialog.setOnSelected(new SelectPhoneDialog.OnSelected() {
+                        @Override
+                        public void onClose() {
+
+                        }
+
+                        @Override
+                        public void selected(CallPhone callPhone) {
+                            Intent intentDial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + callPhone.getPhone()));
+                            startActivity(intentDial);
+                        }
+                    });
+                }else {
+                    Intent intentDial = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + helpline.getPhone()));
+                    startActivity(intentDial);
+                }
+            }
+        });
     }
 
 
@@ -79,13 +118,13 @@ public class HelplineActivity extends AppCompatActivity {
                         Log.d(TAG, "onResponse: "+response);
                         helplineList.clear();
                         try {
-                            JSONArray data = response.getJSONObject("data").getJSONArray("PDFTables.com");
+                            JSONArray data = response.getJSONObject("data").getJSONArray("Table 1");
                             for(int a = 0;a<data.length();a++){
                                 JSONObject object = data.getJSONObject(a);
                                 Helpline helpline = new Helpline();
                                 helpline.setPhone(object.getString("phone"));
                                 helpline.setState(object.getString("state"));
-                                helpline.setRegional(object.getString("regional"));
+                                //helpline.setRegional(object.getString("regional"));
                                 helplineList.add(helpline);
                             }
 

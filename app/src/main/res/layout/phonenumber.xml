@@ -3,30 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="3dp"
     android:id="@+id/linearlayout"
     android:padding="10dp">
     <TextView
         android:id="@+id/state"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_weight="1.5"
         android:text="State" />
-    <TextView
-        android:id="@+id/district"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:text="District" />
+
 
     <TextView
         android:id="@+id/phone"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:paddingStart="10dp"
+        android:gravity="left"
+        android:textIsSelectable="true"
+        android:layout_weight="1.5"
         android:layout_marginEnd="20dp"
         android:text="044-25551086" />
 
