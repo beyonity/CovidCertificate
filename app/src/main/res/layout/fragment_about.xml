@@ -47,10 +47,21 @@
         android:id="@+id/textView11"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
         android:padding="20dp"
-        android:text="We provide COVID Vaccine Certificate download for India and Covid-19 News. All Indians can download their vaccine certificate anytime anywhere from our app."
+        android:text="@string/aboutapp"
         android:textAlignment="center"
         android:textColor="@color/Black" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/capriola"
+        android:text="@string/shareus"
+        android:textAlignment="center"
+        android:textColor="@color/Aztec_Purple"
+        android:textSize="16sp" />
 
     <ImageButton
         android:id="@+id/telegram"
