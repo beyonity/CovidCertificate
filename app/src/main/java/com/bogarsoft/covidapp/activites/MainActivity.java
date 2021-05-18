@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
+                Log.d(TAG, "onInitializationComplete: "+initializationStatus);
             }
         });
 
@@ -72,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        List<String> testDeviceIds = Arrays.asList("7D6FA30B926B8CC2F3CC9434DDB21731");
+       /* List<String> testDeviceIds = Arrays.asList("7D6FA30B926B8CC2F3CC9434DDB21731");
         RequestConfiguration configuration =
                 new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
-        MobileAds.setRequestConfiguration(configuration);
+        MobileAds.setRequestConfiguration(configuration);*/
 
         bottomNavigationView = findViewById(R.id.bottomnav);
         viewPager = findViewById(R.id.vg);

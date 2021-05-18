@@ -63,7 +63,6 @@ public class NewsFragment extends Fragment {
     List<NativeAd> ad = new ArrayList<>();
     int index = 5;
     private Skeleton skeleton;
-    private AdLoader adLoader;
     private static final String TAG = "NewsFragment";
     RecyclerView rv;
     NewsAdapter newsAdapter;
@@ -342,7 +341,13 @@ public class NewsFragment extends Fragment {
             ;
             Log.d(TAG, "loadNativeAds: inside loader");
             ad.clear();
-            AdLoader.Builder builder = new AdLoader.Builder(getContext(), "ca-app-pub-8669188519734324/5234294355");
+            AdLoader.Builder builder;
+            if (a%2==0){
+                builder = new AdLoader.Builder(getContext(), "ca-app-pub-8669188519734324/5234294355");
+            }else {
+                builder = new AdLoader.Builder(getContext(), "ca-app-pub-8669188519734324/2947714813");
+            }
+
             int NO_OF_ADS = 5;
             if (a == perads) {
                 NO_OF_ADS = remainder;
