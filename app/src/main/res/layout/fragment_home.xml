@@ -232,7 +232,7 @@
                         android:fontFamily="@font/capriola"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="Find Districtwise Hospitals complete list"
+                        android:text="Find Districtwise Hospitals  list"
                         android:textAlignment="center"
                         android:textColor="@color/Black"
                         android:textStyle="bold" />
